@@ -1,0 +1,690 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>Document</title>
+    <link rel="stylesheet" href="chingu.css" />
+    <link rel="stylesheet" href="oklch-palette.css" />
+    <script src="menu2.js" defer></script>
+    <script type="module" src="color.js"></script>
+    <script src="sidebar2.js" defer></script>
+    <script src="scrolltop.js"></script>
+    <script type="module" src="settings.js"></script>
+  </head>
+  <body id="body">
+    <header>
+      <h1 class="logo">
+        <ruby>logo<rp>(</rp><rt>친구</rt><rp>)</rp> </ruby>
+      </h1>
+      <div class="theme-position">
+        <div class="color-mode">
+          <form action="">
+            <fieldset class="theme-input">
+              <label class="theme-label" for="lightTheme">
+                <input
+                  type="radio"
+                  id="lightTheme"
+                  name="theme-mode"
+                  value="light"
+                />
+
+                <svg
+                  style="
+                    color: currentcolor;
+                    width: calc(1 / 5 * var(--container_width));
+                    height: calc(1 / 5 * var(--container_width));
+                  "
+                  width="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke="currentColor"
+                  shape-rendering="geometricPrecision"
+                  height="24"
+                  fill="gold"
+                  data-testid="geist-icon"
+                  class="icon"
+                >
+                  <circle r="5" cy="12" cx="12"></circle>
+                  <path d="M12 1v2"></path>
+                  <path d="M12 21v2"></path>
+                  <path d="M4.22 4.22l1.42 1.42"></path>
+                  <path d="M18.36 18.36l1.42 1.42"></path>
+                  <path d="M1 12h2"></path>
+                  <path d="M21 12h2"></path>
+                  <path d="M4.22 19.78l1.42-1.42"></path>
+                  <path d="M18.36 5.64l1.42-1.42"></path>
+                </svg>
+
+                <span class="vissually-hidden">bright </span>
+              </label>
+              <label class="theme-label" id="defaultTheme">
+                <input
+                  type="radio"
+                  aria-labelledby="defaultTheme"
+                  autofocus
+                  checked=""
+                  name="theme-mode"
+                  value="light dark"
+                />
+
+                <svg
+                  style="
+                    color: currentcolor;
+                    width: calc(1 / 5 * var(--container_width));
+                    height: calc(1 / 5 * var(--container_width));
+                  "
+                  width="24"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke="currentColor"
+                  shape-rendering="geometricPrecision"
+                  height="24"
+                  fill="var(--swatch-4)"
+                  data-testid="geist-icon"
+                  class="icon"
+                >
+                  <rect ry="2" rx="2" height="14" width="20" y="3" x="2"></rect>
+                  <path d="M8 21h8"></path>
+                  <path d="M12 17v4"></path>
+                </svg>
+
+                <span class="vissually-hidden"> automatic </span>
+              </label>
+              <label class="theme-label" for="darkTheme">
+                <input
+                  type="radio"
+                  id="darkTheme"
+                  name="theme-mode"
+                  value="dark"
+                />
+
+                <svg
+                  style="
+                    color: currentcolor;
+                    width: calc(1 / 5 * var(--container_width));
+                    height: calc(1 / 5 * var(--container_width));
+                  "
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke-linejoin="round"
+                  stroke-linecap="round"
+                  stroke="currentColor"
+                  shape-rendering="geometricPrecision"
+                  fill="var(--swatch-2)"
+                  data-testid="geist-icon"
+                  class="icon"
+                >
+                  <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                </svg>
+                <span class="vissually-hidden"> night</span>
+              </label>
+              <span class="select"></span>
+            </fieldset>
+          </form>
+
+          <button class="brush" popovertarget="look">
+            <svg
+              style="
+                color: black;
+                width: calc(1 / 3.7 * var(--container_width));
+                height: calc(1 / 3.7 * var(--container_width));
+              "
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke-linejoin="round"
+              stroke-linecap="round"
+              stroke="currentColor"
+              shape-rendering="geometricPrecision"
+              fill="var(--swatch-2)"
+              data-testid="geist-icon"
+            >
+              <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div popover id="look">
+        <button
+          class="close-btn"
+          popovertarget="look"
+          popovertargetaction="hide"
+        >
+          <span class="sr-only">Close</span>
+          <svg
+            style="
+              color: black;
+              width: calc(1 / 3.7 * var(--container_width));
+              height: calc(1 / 3.7 * var(--container_width));
+            "
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke-linejoin="round"
+            stroke-linecap="round"
+            stroke="currentColor"
+            shape-rendering="geometricPrecision"
+            onclick="this.classList.toggle('active')"
+            fill="var(--swatch-2)"
+            data-testid="geist-icon"
+          >
+            <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+          </svg>
+        </button>
+        <form action="" class="color-picker">
+          <fieldset class="color_radio" style="--sibling-count: 8">
+            <label for="magenta" class="vissually-hidden">magenta</label>
+            <input
+              style="--sibling-index: 1"
+              type="radio"
+              name="cyclical-group"
+              id="magenta"
+            />
+
+            <label for="blue" class="vissually-hidden">blue</label>
+            <input
+              style="--sibling-index: 2"
+              type="radio"
+              name="cyclical-group"
+              id="blue"
+            />
+
+            <label for="aqua" class="vissually-hidden">aqua</label>
+            <input
+              style="--sibling-index: 3"
+              type="radio"
+              name="cyclical-group"
+              id="aqua"
+              checked
+            />
+
+            <label for="aquamarine" class="vissually-hidden">aquamarine</label>
+            <input
+              style="--sibling-index: 4"
+              type="radio"
+              name="cyclical-group"
+              id="aquamarine"
+            />
+
+            <label for="green" class="vissually-hidden">green</label>
+            <input
+              style="--sibling-index: 5"
+              type="radio"
+              name="cyclical-group"
+              id="green"
+            />
+
+            <label for="golden" class="vissually-hidden">golden</label>
+            <input
+              style="--sibling-index: 6"
+              type="radio"
+              name="cyclical-group"
+              id="golden"
+            />
+
+            <label for="orangered" class="vissually-hidden">orangered</label>
+            <input
+              style="--sibling-index: 7"
+              type="radio"
+              name="cyclical-group"
+              id="orangered"
+            />
+
+            <label for="pink" class="vissually-hidden">pink</label>
+            <input
+              style="--sibling-index: 8"
+              type="radio"
+              name="cyclical-group"
+              id="pink"
+            />
+
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 256 256"
+              aria-hidden="true"
+              style="scale: 1.4"
+              class="dropper_icon"
+            >
+              <rect width="256" height="256" fill="none"></rect>
+              <path
+                d="M49.67,186.24h0L40.48,207.3a5.74,5.74,0,0,0,1.2,6.36,8,8,0,0,0,8.86,1.67l20-8.74h0a32,32,0,0,0,32.06-8L141.25,160H52.3A32.07,32.07,0,0,0,49.67,186.24Z"
+                fill="var(--text-3)"
+              ></path>
+              <path
+                d="M182.43,113.17l4.88,4.89a16,16,0,0,1,0,22.63l-9,9a8,8,0,0,1-11.31,0L106.34,89a8,8,0,0,1,0-11.31l9-9a16,16,0,0,1,22.63,0l4.89,4.88,25-25.1c10.79-10.79,28.37-11.45,39.44-1a28,28,0,0,1,.57,40.15Z"
+                fill="none"
+                stroke="var(--text-2)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="16"
+              ></path>
+              <path
+                d="M159.31,141.94l-56.68,56.69a32,32,0,0,1-32.06,8h0l-20,8.74a8,8,0,0,1-8.86-1.67h0a5.74,5.74,0,0,1-1.2-6.36l9.19-21.06h0a32,32,0,0,1,7.7-32.87l56.69-56.68"
+                fill="none"
+                stroke="var(--text-2)"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="16"
+              ></path>
+            </svg>
+
+            <!--label for="color9" class="vissually-hidden"></label>
+          <input style="--sibling-index: 9" type="radio" name="cyclical-group" id="color9"-->
+          </fieldset>
+        </form>
+      </div>
+
+      <button
+        class="menu-toggle"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+        accesskey="m"
+      >
+        <span class="visually-hidden">Menu</span>
+
+        <svg
+          class="ham"
+          aria-hidden="true"
+          viewBox="0 0 100 100"
+          width="40"
+          onclick="this.classList.toggle('active')"
+        >
+          <path
+            class="line top"
+            d="m 70,33 h -40 c -6.5909,0 -7.763966,-4.501509 -7.763966,-7.511428 0,-4.721448 3.376452,-9.583771 13.876919,-9.583771 14.786182,0 11.409257,14.896182 9.596449,21.970818 -1.812808,7.074636 -15.709402,12.124381 -15.709402,12.124381"
+          />
+          <path class="line middle" d="m 30,50 h 40" />
+          <path
+            class="line bottom"
+            d="m 70,67 h -40 c -6.5909,0 -7.763966,4.501509 -7.763966,7.511428 0,4.721448 3.376452,9.583771 13.876919,9.583771 14.786182,0 11.409257,-14.896182 9.596449,-21.970818 -1.812808,-7.074636 -15.709402,-12.124381 -15.709402,-12.124381"
+          />
+        </svg>
+      </button>
+
+      <nav class="site-nav">
+        <menu
+          data-state="closed"
+          class="primary-navigation"
+          id="primary-navigation"
+        >
+          <dl>
+            <dt>Menu</dt>
+            <dd>
+              <label class="menu-place" for="menu-bottom">
+                <input id="menu-bottom" type="checkbox" class="hidden" />
+                <ul class="rel">
+                  <li class="menu-place-option">move to top</li>
+                  <li class="menu-place-option">bottom menu</li>
+                </ul>
+              </label>
+            </dd>
+          </dl>
+
+          <li class="menu-items">
+            <a href="" id="home"> <i class="nf-oct-home--icon"></i>Home</a>
+            <hr class="navhr" />
+          </li>
+          <li class="menu-items">
+            <a href="" accesskey="2">
+              <i class="fa fa-info site-nav--icon"></i>About</a
+            >
+            <hr class="navhr" />
+          </li>
+          <li class="menu-items">
+            <a href="" accesskey="3">
+              <i class="fa fa-pencil site-nav--icon"></i>Blog</a
+            >
+            <hr class="navhr" />
+          </li>
+          <li class="menu-items">
+            <a href="" accesskey="4">
+              <i class="fa fa-usd site-nav--icon"></i>youtube</a
+            >
+            <hr class="navhr" />
+          </li>
+          <li class="menu-items">
+            <a href="" accesskey="5">
+              <i class="fa fa-envelope site-nav--icon"></i>works</a
+            >
+            <hr class="navhr" />
+          </li>
+          <li class="menu-items">
+            <a href="" accesskey="6">
+              <i class="fa fa-envelope site-nav--icon"></i>words</a
+            >
+            <!--hr class="navhr" /-->
+          </li>
+        </menu>
+      </nav>
+      <div class="topbar">
+        <button
+          class="left-toggle"
+          aria-controls="article-navigation"
+          aria-expanded="false"
+          accesskey="l"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            style="color: black; scale: 1"
+            viewBox="0 0 15 15"
+            fill="none"
+            stroke="var(--text-2)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="Left-Sidebar-svg"
+            width="50"
+            height="50"
+            class="icon"
+            stroke-width="2"
+            role="icon"
+            aria-hidden="true"
+          >
+            <path
+              d="M2.5 3.75a1.25 1.25 0 0 1 1.25 -1.25h7.5a1.25 1.25 0 0 1 1.25 1.25v7.5a1.25 1.25 0 0 1 -1.25 1.25H3.75a1.25 1.25 0 0 1 -1.25 -1.25z"
+              stroke-width="1"
+            ></path>
+            <path d="M5.625 2.5v10" stroke-width="1"></path>
+            <path d="m9.375 6.25 -1.25 1.25 1.25 1.25" stroke-width="1"></path>
+          </svg>
+          <span class="visually-hidden"> left sidebar </span>
+          <!--a href="#article-navigation">
+      </a-->
+        </button>
+        <nav aria-label="Breadcrumb" class="breadcrumb">
+          <ul>
+            <li>
+              <label for="crumbs-dropdown">
+                <input type="checkbox" id="crumbs-dropdown" />
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="color: black; scale: 1.6"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  stroke="var(--text-2)"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="dropdown-crumb-svg"
+                  width="47"
+                  height="50"
+                  stroke-width=".6"
+                  role="icon"
+                  aria-hidden="true"
+                >
+                  <path d="m8.2 6.1 -1.25 1.25 1.25 1.25"></path>
+                </svg>
+              </label>
+
+              <!--li>
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="color: black; scale: 1.6; rotate: 0.5turn"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  stroke="var(--text-2)"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="breadcrumb-svg"
+                  width="47"
+                  height="50"
+                  stroke-width=".6"
+                  role="icon"
+                  aria-hidden="true"
+                >
+                  <path d="m8.2 6.1 -1.25 1.25 1.25 1.25"></path>
+                </svg>
+              </button>
+            </li-->
+            </li>
+
+            <li class="crumbs" tabindex="0" onclick="window.location='#body'">
+              <!--a href="#body">
+              </a-->
+              <label
+                ><input
+                  type="radio"
+                  name="nav-group"
+                  value="home"
+                  tabindex="-1"
+                />
+                Home
+              </label>
+              <label
+                ><input
+                  type="radio"
+                  name="nav-group"
+                  value="About"
+                  tabindex="-1"
+                />
+                About
+              </label>
+              <label
+                ><input
+                  type="radio"
+                  name="nav-group"
+                  value="Blog"
+                  tabindex="-1"
+                />
+                Blog
+              </label>
+              <label
+                ><input
+                  type="radio"
+                  name="nav-group"
+                  value="youtube"
+                  tabindex="-1"
+                />
+                youtube
+              </label>
+              <label
+                ><input
+                  type="radio"
+                  name="nav-group"
+                  value="works"
+                  tabindex="-1"
+                />
+                works
+              </label>
+              <label
+                ><input
+                  type="radio"
+                  name="nav-group"
+                  value="words"
+                  tabindex="-1"
+                />
+                words
+              </label>
+            </li>
+            <li>
+              <button>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  style="color: black; scale: 1.6; rotate: 0.5turn"
+                  viewBox="0 0 15 15"
+                  fill="none"
+                  stroke="var(--text-2)"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="breadcrumb-svg"
+                  width="47"
+                  height="50"
+                  stroke-width=".6"
+                  role="icon"
+                  aria-hidden="true"
+                >
+                  <path d="m8.2 6.1 -1.25 1.25 1.25 1.25"></path>
+                </svg>
+              </button>
+            </li>
+            <li><span aria-current="page">section1</span></li>
+          </ul>
+        </nav>
+
+        <button
+          class="right-toggle"
+          aria-controls="article-preference"
+          aria-expanded="false"
+          accesskey="r"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            style="color: black; scale: 1; rotate: 0.5turn"
+            viewBox="0 0 15 15"
+            fill="none"
+            stroke="var(--text-2)"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="Right-Sidebar-svg"
+            width="50"
+            height="50"
+            class="icon"
+            stroke-width="2"
+            role="icon"
+            aria-hidden="true"
+          >
+            <path
+              d="M2.5 3.75a1.25 1.25 0 0 1 1.25 -1.25h7.5a1.25 1.25 0 0 1 1.25 1.25v7.5a1.25 1.25 0 0 1 -1.25 1.25H3.75a1.25 1.25 0 0 1 -1.25 -1.25z"
+              stroke-width="1"
+            ></path>
+            <path d="M5.625 2.5v10" stroke-width="1"></path>
+            <path d="m9.375 6.25 -1.25 1.25 1.25 1.25" stroke-width="1"></path>
+          </svg>
+          <span class="visually-hidden">right sidebar</span>
+        </button>
+      </div>
+    </header>
+    <div
+      class="left-sidebar"
+      id="article-navigation"
+      data-state="closed"
+      contenteditable=""
+    >
+      Left Sidebar Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+      Inventore optio explicabo pariatur nam id placeat nobis neque, rem
+      voluptate doloribus non iusto laudantium aut, deserunt veritatis accusamus
+      fugit sed molestiae.
+    </div>
+    <main id="main">
+      <section id="section1" contenteditable="false">
+        <h2 contenteditable=""><a href="#section1">section1 www |}</a></h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae non,
+        eaque, vitae debitis error sunt accusamus iure ullam accusantium beatae
+        modi necessitatibus animi. Maiores quos quod voluptatibus similique
+        temporibus architecto. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Recusandae non, eaque, vitae debitis error sunt
+        accusamus iure ullam accusantium beatae modi necessitatibus animi.
+        Maiores quos quod voluptatibus similique temporibus architecto.www www
+      </section>
+      <section id="section2">
+        <h2 contenteditable="contenteditable">
+          <a href="#section2">section2</a>
+        </h2>
+        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nostrum nulla
+        ex ipsa iusto tenetur, ullam fugiat delectus, voluptatibus rem
+        molestiae, qui facere excepturi odio doloremque aspernatur magnam
+        recusandae aperiam non!
+      </section>
+      <section id="section3">
+        <h2 contenteditable="contenteditable">
+          <a href="#section3">section3</a>
+        </h2>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Consequatur
+        sint porro quam dignissimos quisquam consectetur accusantium, unde,
+        magni debitis explicabo rem at voluptatum minima est similique eius
+        officiis! In, dolorem. Lorem ipsum dolor sit amet consectetur
+        adipisicing elit. Recusandae non, eaque, vitae debitis error sunt
+        accusamus iure ullam accusantium beatae modi necessitatibus animi.
+        Maiores quos quod voluptatibus similique temporibus architecto.
+      </section>
+      <section id="section4">
+        <h2 contenteditable="contenteditable">
+          <a href="#section4">section4</a>
+        </h2>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Temporibus,
+        veniam dolor labore iste quae, ad ex sed illo voluptate delectus omnis,
+        eveniet alias tempore explicabo corrupti ipsum vel velit et! Lorem ipsum
+        dolor sit amet consectetur adipisicing elit. Recusandae non, eaque,
+        vitae debitis error sunt accusamus iure ullam accusantium beatae modi
+        necessitatibus animi. Maiores quos quod voluptatibus similique
+        temporibus architecto.
+      </section>
+      <section id="section5">
+        <h2 contenteditable="contenteditable">
+          <a href="#section5">section5</a>
+        </h2>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illum itaque
+        quos numquam laborum quidem minus at debitis veritatis quibusdam
+        possimus, eos sapiente sequi. Quis, exercitationem eveniet minus esse
+        ipsa ducimus. Lorem ipsum dolor sit amet consectetur adipisicing elit.
+        Recusandae non, eaque, vitae debitis error sunt accusamus iure ullam
+        accusantium beatae modi necessitatibus animi. Maiores quos quod
+        voluptatibus similique temporibus architecto.
+      </section>
+    </main>
+    <a id="scrolltop" href="#body">&uarr;</a>
+    <div class="right-sidebar" id="article-preference" data-state="closed">
+      <form>
+        <fieldset class="fieldset">
+          <div class="fieldset-item">
+            <picture aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="50" height="50">
+                <title>A note icon</title>
+                <path
+                  d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"
+                />
+              </svg>
+            </picture>
+            <div class="input-stack">
+              <label for="media-volume" id="media-volume" aria-hidden="true">
+                Font size
+              </label>
+              <input
+                id="font-size-slider"
+                name="media-volume"
+                aria-labelledby="media-volume"
+                type="range"
+                min=".6"
+                max="8"
+                step=".4"
+                value="2"
+                style="--track-fill: 30%"
+              />
+            </div>
+          </div>
+
+          <div class="fieldset-item">
+            <picture aria-hidden="true">
+              <svg viewBox="0 0 24 24" width="50" height="50">
+                <title>An alarm clock icon</title>
+                <path
+                  d="M22 5.72l-4.6-3.86-1.29 1.53 4.6 3.86L22 5.72zM7.88 3.39L6.6 1.86 2 5.71l1.29 1.53 4.59-3.85zM12.5 8H11v6l4.75 2.85.75-1.23-4-2.37V8zM12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9c4.97 0 9-4.03 9-9s-4.03-9-9-9zm0 16c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"
+                />
+              </svg>
+            </picture>
+            <div class="input-stack">
+              <label for="alarm-volume" id="alarm-volume" aria-hidden="true"
+                >Line height</label
+              >
+              <input
+                id="line-height-slider"
+                name="alarm-volume"
+                aria-labelledby="alarm-volume"
+                type="range"
+                min=".6"
+                max="8"
+                step=".4"
+                value="1.6"
+                style="--track-fill: 80%"
+              />
+            </div>
+          </div>
+        </fieldset>
+      </form>
+    </div>
+    <footer contenteditable="">Footer Content — Header.com 2020</footer>
+  </body>
+</html>

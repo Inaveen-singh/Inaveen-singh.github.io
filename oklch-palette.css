@@ -1,0 +1,131 @@
+:root {
+  --hue-offset: 8;
+}
+/*
+:root:has(meta[name="color-scheme"][content="dark"]) {
+  --hue-offset:5;
+   -25,21,64,110,156,200,245,290,335
+}
+*/
+:root:has(#magenta:checked) {
+  --hue-offset: 1;
+  --radio-back: 335deg;
+}
+:root:has(#blue:checked) {
+  --hue-offset: 2;
+  --radio-back: 21deg;
+}
+:root:has(#aqua:checked) {
+  --hue-offset: 3;
+  --radio-back: 64deg;
+}
+:root:has(#aquamarine:checked) {
+  --hue-offset: 4;
+  --radio-back: 110deg;
+}
+:root:has(#green:checked) {
+  --hue-offset: 5;
+  --radio-back: 156deg;
+}
+:root:has(#golden:checked) {
+  --hue-offset: 6;
+  --radio-back: 200deg;
+}
+:root:has(#orangered:checked) {
+  --hue-offset: 7;
+  --radio-back: 245deg;
+}
+:root:has(#pink:checked) {
+  --hue-offset: 8;
+  --radio-back: 290deg;
+}
+
+html {
+  /*360/13 = 27.69230769230769
+    360/14 = 25.714285714285715
+    360/18 = 20
+    360/24 = 15
+    360/36 = 10
+    360/72 = 5
+    360/8 = 45
+    360/9 = 40
+    360/10 = 36
+    360/12 = 30
+    360/8 = 45
+    360/6 = 60
+    360/7 = 51.42857142857143
+  --calc-hue: calc(320 + 360 * var(--hue-offset, 0));
+  */
+
+  --calc-hue: calc(350 - (45 * var(--hue-offset, 0)));
+  --hue: var(--calc-hue, 360);
+
+  --swatch-1: oklch(99% 0.05 var(--hue));
+  --swatch-2: oklch(90% 0.1 var(--hue));
+  --swatch-3: oklch(80% 0.2 var(--hue));
+  --swatch-4: oklch(72% 0.25 var(--hue));
+  --swatch-5: oklch(67% 0.31 var(--hue));
+  --swatch-6: oklch(50% 0.27 var(--hue));
+  --swatch-7: oklch(35% 0.25 var(--hue));
+  --swatch-8: oklch(25% 0.2 var(--hue));
+  --swatch-9: oklch(13% 0.2 var(--hue));
+  --swatch-10: oklch(5% 0.1 var(--hue));
+  /*
+  --swatch-1: oklch(99% .05 var(--hue));
+  --swatch-2: oklch(90% .2 var(--hue));
+  --swatch-3: oklch(80% .27 var(--hue));
+  --swatch-4: oklch(70% .25 var(--hue));
+  --swatch-5: oklch(67% .33 var(--hue));
+  --swatch-6: oklch(50% .27 var(--hue));
+  --swatch-7: oklch(35% .25 var(--hue));
+  --swatch-8: oklch(25% .22 var(--hue));
+  --swatch-9: oklch(17% .2 var(--hue));
+  --swatch-10: oklch(5% .1 var(--hue));
+  */
+
+  --text-1: var(--swatch-10);
+  --text-2: var(--swatch-7);
+  --text-3: var(--swatch-5);
+  --surface-1: var(--swatch-1);
+  --surface-2: var(--swatch-2);
+  --surface-3: var(--swatch-3);
+  --surface-4: var(--swatch-4);
+}
+
+/* override with dark colors
+   when dark color scheme is preferred
+   but only if light mode is not explicitly set
+*/
+@media (prefers-color-scheme: dark) {
+  html:has(meta[name="color-scheme"]:not([content="light"])) {
+    mix-blend-mode: exclusion;
+    --color-bg: #1e1f24;
+    --color-text: white;
+    --text-1: var(--swatch-1);
+    --text-2: var(--swatch-2);
+    --text-3: var(--swatch-6);
+    --surface-1: var(--swatch-10);
+    --surface-2: var(--swatch-9);
+    --surface-3: var(--swatch-8);
+    --surface-4: var(--swatch-7);
+  }
+}
+/* also override with dark colors
+   when dark mode is explicitly set
+*/
+html:has(meta[name="color-scheme"][content="dark"]) {
+  mix-blend-mode: normal;
+  --color-bg: black;
+  --color-text: white;
+  --text-1: var(--swatch-1);
+  --text-2: var(--swatch-2);
+  --text-3: var(--swatch-6);
+  --surface-1: var(--swatch-10);
+  --surface-2: var(--swatch-9);
+  --surface-3: var(--swatch-8);
+  --surface-4: var(--swatch-7);
+}
+
+html:has(meta[name="color-scheme"][content="light"]) {
+  filter: brightness(1) contrast(0.9) saturate(0.8);
+}
